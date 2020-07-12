@@ -74,15 +74,13 @@
       console.log('home destroyed');
       
     },
-    destroyed() {
-      console.log('home destroyed');
-    },
     activated() {
       this.$refs.scroll.scrollTo(0, this.saveY, 0)
       this.$refs.scroll.refresh()
     },
     deactivated() {
       this.saveY = this.$refs.scroll.getScrollY()
+      console.log(this.saveY)
     },
     created() {
       // 1.请求多个数据
@@ -149,7 +147,6 @@
         getHomeGoods(type, page).then(res => {
           this.goods[type].list.push(...res.data.list)
           this.goods[type].page += 1
-    
           // 完成上拉加载更多
           this.$refs.scroll.finishPullUp()
         })
